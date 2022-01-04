@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header'
 import BackLog from './components/BackLog'
 import Ready from './components/Ready'
+import InProgress from './components/InProgress';
 
 class App extends React.Component {
   constructor (props) {
@@ -10,7 +11,8 @@ class App extends React.Component {
     this.state = {
       backLogCurrentList: [],
       readyCurrentList:[],
-      selectCurrentList: []
+      selectCurrentList: [],
+      inProgressCurrentList:[]
     }
   }
   onBackLogSubmit = item => {
@@ -26,9 +28,15 @@ class App extends React.Component {
       readyCurrentList: state.readyCurrentList.concat(item)
     }))
   }
+  onInProgressSubmit = item => {
+    this.setState(state => ({
+      readyCurrentList: state.readyCurrentList.filter(listItem => listItem !== item),
+      inProgressCurrentList: state.inProgressCurrentList.concat(item)
+    }))
+  }
   
   render () {
-    const { backLogCurrentList, selectCurrentList, readyCurrentList } = this.state
+    const { backLogCurrentList, selectCurrentList, readyCurrentList, inProgressCurrentList } = this.state
     return(
     <>
       <Header />
@@ -42,8 +50,12 @@ class App extends React.Component {
           readyList={readyCurrentList}
           selectList={selectCurrentList}
         />
-        {/* <InProgress></InProgress>
-        <Finished></Finished> */}
+        <InProgress 
+          inProgressList={inProgressCurrentList}
+          selectList={readyCurrentList}
+          onInProgressSubmit={this.onInProgressSubmit}
+        />
+        {/* <Finished></Finished> */}
       </main>
     </>
     )
