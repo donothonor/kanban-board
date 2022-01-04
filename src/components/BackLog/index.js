@@ -4,10 +4,11 @@ import './index.css'
 class BackLog extends React.Component {
     constructor (props) {
         super(props)
+
         this.state = {
-            list : [],
             text: ''
         }
+
         this.backlogInputWrapper = React.createRef()
         this.backlogInput = React.createRef()
         this.backlogButton = React.createRef()
@@ -21,13 +22,11 @@ class BackLog extends React.Component {
     }
     submitHandleClick = () => {
         const newItem = this.state.text
-
         if (newItem) {
-            this.setState(state => ({
-                list: state.list.concat(newItem),
-                text: ''
-            }))
-    
+            this.setState({
+                text:''
+            })
+            this.props.onBackLogSubmit(this.state.text)
             this.buttonHandleClick()
         } else {
             return
@@ -39,15 +38,13 @@ class BackLog extends React.Component {
         })
     }
     render () {
-        const { list } = this.state
-
-        let filtredList = list.filter(item => item !== this.props.taskToRemove)    
+        const { backLogList } = this.props
         return (
             <div className="card-wrapper">
                 <div className="card-content">
                     <h2>Backlog</h2>
                     <ul className="card-content-list">
-                    {filtredList.map((item, index) => {
+                    {backLogList.map((item, index) => {
                          return   <li key={index}>
                                     {item}
                                   </li>
@@ -72,7 +69,7 @@ class BackLog extends React.Component {
                          onClick={this.submitHandleClick}   
                     >
                         <button
-                            onClick={() => this.props.updateBackLogList(this.state.text)}   
+                            
                         >
                             Submit
                         </button>

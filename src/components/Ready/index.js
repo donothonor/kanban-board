@@ -5,9 +5,7 @@ class Ready extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
-            taskToRemove: '',
-            readyList: [],
-            list: []
+
         }
         this.select = React.createRef()
         this.button = React.createRef()
@@ -18,39 +16,27 @@ class Ready extends React.Component {
         this.button.current.classList.toggle('display__none')
         this.select.current.classList.toggle('display__none')
     }
-    componentDidMount () {
-        this.setState ({
-            list: this.props.selectList
-        })
-    }
     selectHandleClick = (e) => {
         const newItem = e.target.value
-        this.setState(state => ({
-            readyList: state.readyList.concat(newItem),
-            taskToRemove: newItem
-            
-        }))
-        this.props.getTaskToRemove(this.state.taskToRemove)
+        this.props.onReadySubmit(newItem)
         this.changeDisplay()
     }
 
     buttonHandleClick = () => {
-        if (this.state.list.length) {
+        if (this.props.selectList.length) {
             this.changeDisplay()
         } else {
             return
         }
-        this.setState({
-            list: this.props.selectList
-        })
     }
     render () {
+        const { selectList, readyList } = this.props
         return (
             <div className="card-wrapper">
                 <div className="card-content">
                     <h2>Ready</h2>
                     <ul className="card-content-list">
-                        {this.state.readyList.map((item) => {
+                        {readyList.map((item) => {
                          return   <li>
                                     {item}
                                   </li>
@@ -67,7 +53,7 @@ class Ready extends React.Component {
                     </div>
                     <div className="select-list display__none" ref={this.select}>
                         <select className="select"  onChange={this.selectHandleClick}>
-                            {this.state.list.map(item => {
+                            {selectList.map(item => {
                             return <option 
                                 ref={this.selectItem}
                             >
