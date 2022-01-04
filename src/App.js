@@ -1,25 +1,42 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Header from './components/Header'
+import BackLog from './components/BackLog'
+import Ready from './components/Ready'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      taskToRemove: '',
+      backLogCurrentList: []
+    }
+  }
+  getTaskToRemove = (task) => {
+    this.state.taskToRemove = task
+  }
+  updateBackLogList = (data) => {
+    this.state.backLogCurrentList.push(data)
+  }  
+  render () {
+    return(
+    <>
+      <Header />
+      <main className='main'>
+        <BackLog
+          taskToRemove = {this.state.taskToRemove}
+          updateBackLogList = {this.updateBackLogList}
+        ></BackLog>
+        <Ready
+          getTaskToRemove = {this.getTaskToRemove}
+          selectList = {this.state.backLogCurrentList}        
+          ></Ready>
+        {/* <InProgress></InProgress>
+        <Finished></Finished> */}
+      </main>
+    </>
+    )
+  }
 }
 
 export default App;

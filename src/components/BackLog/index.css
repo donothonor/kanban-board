@@ -1,32 +1,28 @@
-.main {
-    display: flex;
-    justify-content: space-around;
-    background-color: #0079BF;
-}
-.card-wrapper {
+
+/* .backlog-wrapper {
     font-size: 18px;
     padding: 12px 12px 8px 12px;
     background: #EBECF0;
     border-radius: 10px;
 }
-.card-content {
+.backlog-content {
 
 }
-.card-content h2 {
+.backlog-content h2 {
     margin-bottom: 15px;
 }
-.card-content-list {
+.backlog-content-list {
     list-style-type: none;
     padding-left: 0;
 }
-.card-content-list li {
+.backlog-content-list li {
     background-color: white;
     color: black;
     padding: 8px;
     border-radius: 5px;
     margin-bottom: 15px;
 }
-.card-button {
+.backlog-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,23 +31,23 @@
     border-radius: 5px;
     margin-bottom: 15px;
 }
-.card-button:hover {
+.backlog-button:hover {
     background: white;
 }
-.card-button button{
+.backlog-button button{
     background: none;
     font-size: 18px;
     border: none;
     cursor: pointer;
 }
-.card-input {
+.backlog-input {
     background-color: white;
     color: black;
     padding: 8px;
     border-radius: 5px;
     margin-bottom: 15px;
 }
-.card-input input {
+.backlog-input input {
     width: 100%;
     border: none;
     border-bottom: 1px solid black ;
@@ -60,17 +56,17 @@
 .display__none {
     display: none;
 }
-.card-submit {
+.backlog-submit {
     text-align: center;
     background-color:  #0079BF;
     width: 100px;
     height: 30px;
     border-radius: 5px;
 }
-.card-submit button {
+.backlog-submit button {
     padding-top: 4px;
     font-size: 18px;
     border: none;
     background: none;
     color: white;
-}
+} */
