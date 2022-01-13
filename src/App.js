@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
+import Card from './components/Card'
 import Header from './components/Header'
-import BackLog from './components/BackLog'
-import Ready from './components/Ready'
-import InProgress from './components/InProgress';
+import Footer from './components/Footer'
 
 class App extends React.Component {
   constructor (props) {
@@ -11,19 +10,18 @@ class App extends React.Component {
     this.state = {
       backLogCurrentList: [],
       readyCurrentList:[],
-      selectCurrentList: [],
-      inProgressCurrentList:[]
+      inProgressCurrentList:[],
+      finishedCurrentList: []
     }
   }
+  
   onBackLogSubmit = item => {
     this.setState(state => ({
       backLogCurrentList: state.backLogCurrentList.concat(item),
-      selectCurrentList: state.selectCurrentList.concat(item)
     }))
   }
   onReadySubmit = item => {
     this.setState(state => ({
-      selectCurrentList: state.selectCurrentList.filter(listItem => listItem !== item),
       backLogCurrentList: state.backLogCurrentList.filter(listItem => listItem !== item),
       readyCurrentList: state.readyCurrentList.concat(item)
     }))
@@ -34,29 +32,50 @@ class App extends React.Component {
       inProgressCurrentList: state.inProgressCurrentList.concat(item)
     }))
   }
+  onFinishSubmit = item => {
+    this.setState(state => ({
+      inProgressCurrentList: state.inProgressCurrentList.filter(listItem => listItem !== item),
+      finishedCurrentList: state.finishedCurrentList.concat(item)
+    }))
+  }
   
   render () {
-    const { backLogCurrentList, selectCurrentList, readyCurrentList, inProgressCurrentList } = this.state
+    const { backLogCurrentList, readyCurrentList, inProgressCurrentList, finishedCurrentList} = this.state
     return(
     <>
       <Header />
       <main className='main'>
-        <BackLog
-          onBackLogSubmit={this.onBackLogSubmit}
-          backLogList={backLogCurrentList}
+        <Card 
+          name = 'Backlog'
+          list = {backLogCurrentList}
+          submit = {this.onBackLogSubmit}
+          selectList = {[]} 
         />
-        <Ready
-          onReadySubmit={this.onReadySubmit}
-          readyList={readyCurrentList}
-          selectList={selectCurrentList}
+        <Card 
+          name = 'Ready'
+          list = {readyCurrentList}
+          submit={this.onReadySubmit}
+          selectList = {backLogCurrentList}
         />
-        <InProgress 
-          inProgressList={inProgressCurrentList}
-          selectList={readyCurrentList}
-          onInProgressSubmit={this.onInProgressSubmit}
+        <Card 
+          name = 'In Progress'
+          list = {inProgressCurrentList}
+          submit={this.onInProgressSubmit}
+          selectList = {readyCurrentList}
         />
-        {/* <Finished></Finished> */}
+        <Card 
+          name = 'Finished'
+          list = {finishedCurrentList}
+          submit={this.onFinishSubmit}
+          selectList = {inProgressCurrentList}
+        />
       </main>
+      <Footer
+        name={'Vadim Spiridonov'}
+        year={2022} 
+        activeTasks={backLogCurrentList.length}
+        finishedTasks={finishedCurrentList.length}
+      />
     </>
     )
   }

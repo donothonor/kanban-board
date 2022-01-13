@@ -1,9 +1,25 @@
+body {
+    user-select:none;
+}
+button {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
+
 .main {
+    height: 590px;
     display: flex;
     justify-content: space-around;
     background-color: #0079BF;
 }
+
 .card-wrapper {
+    display: inline;
+    margin: 15px 0;
+    overflow-y: scroll;
+    width: 289px;
     font-size: 18px;
     padding: 12px 12px 8px 12px;
     background: #EBECF0;
@@ -20,6 +36,7 @@
     padding-left: 0;
 }
 .card-content-list li {
+    cursor: pointer;
     background-color: white;
     color: black;
     padding: 8px;
@@ -32,18 +49,25 @@
     align-items: center;
     width: 100px;
     height: 30px;
-    border-radius: 5px;
     margin-bottom: 15px;
 }
-.card-button:hover {
+.card-button button:hover {
     background: white;
 }
 .card-button button{
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
     background: none;
     font-size: 18px;
     border: none;
     cursor: pointer;
 }
+.card-button button:disabled{
+   background: none;
+   cursor: unset;
+}
+
 .card-input {
     background-color: white;
     color: black;
@@ -74,3 +98,17 @@
     background: none;
     color: white;
 }
+.select {
+    border: none;
+    font-size: 18px;
+    outline: none;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+   
+

@@ -1,0 +1,16 @@
+.footer {
+    padding: 17px 21px;
+    font-weight: 400;
+    background-color: #0067A3;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    color: white;  
+}
+.l-side {
+    display: flex;
+    justify-content: space-between;
+}
+.active {
+    margin-right: 2em;
+}
