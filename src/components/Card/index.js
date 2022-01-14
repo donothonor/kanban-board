@@ -1,4 +1,5 @@
 import React from 'react'
+import AddCardBtn from '../AddCardBtn'
 import './index.css'
 
 
@@ -11,7 +12,6 @@ class Card extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this)
 
-        this.btn = React.createRef()
         this.select = React.createRef()
         this.submit = React.createRef()
         this.addButton = React.createRef()
@@ -81,9 +81,14 @@ class Card extends React.Component {
                         })}                        
                     </ul>
                     <div className="card-button" ref={this.addButton} >
-                        <button onClick={this.buttonHandleClick} ref={this.btn}>
+                        {/* <button onClick={this.buttonHandleClick}>
                             + Add card
-                        </button>
+                        </button> */}
+                        <AddCardBtn 
+                            buttonHandleClick={this.buttonHandleClick}
+                            isEnabled={selectList.length}
+                            name={name}
+                        />
                     </div>
                     <div className="card-input display__none" ref={this.inputWrapper}>
                         <input 
